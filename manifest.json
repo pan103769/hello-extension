@@ -1,11 +1,21 @@
 {
   "manifest_version": 3,
-  "name": "Hello Extension",
+  "name": "YouTube Education Filter",
+  "description": "Hide non-educational YouTube videos using the YouTube Data API.",
   "version": "1.0",
 
   "icons": {
     "128": "images/icon.png"
   },
+
+  "permissions": [
+    "storage"
+  ],
+
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://www.googleapis.com/*"
+  ],
 
   "action": {
     "default_popup": "popup.html"

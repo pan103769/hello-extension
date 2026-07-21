@@ -3,13 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HELOI EXTENSIONIII</title>
+    <title>YouTube Education Filter</title>
     <link rel="stylesheet" href="popup.css">
 </head>
+
 <body>
-    <h1>HELOLOLOLOHello</h1>
-    <button>button</button></button>
-    <p>random quotes: ["press button"]</p>
-<script src="popup.js"></script>
+
+    <h1>YouTube Education Filter</h1>
+
+    <label for="apiKey">YouTube Data API Key</label>
+
+    <input
+        type="password"
+        id="apiKey"
+        placeholder="Paste your API Key here"
+        autocomplete="off"
+    >
+
+    <button id="saveBtn">Save API Key</button>
+
+    <p id="status">❌ API Key not saved.</p>
+
+    <script src="popup.js"></script>
+
 </body>
 </html>

@@ -1,42 +1,56 @@
-console.log("HELOLOLOLOHello Pant! 🚀")
+console.log("Popup Loaded 🚀");
+
+// ==============================================
+// Get HTML Elements
+// ==============================================
+const apiKeyInput = document.querySelector("#apiKey");
+const saveButton = document.querySelector("#saveBtn");
+const status = document.querySelector("#status");
 
 
-const quotes = [
-  "Believe in yourself.",
-  "Done is better than perfect.",
-  "Stay hungry. Stay foolish.",
-  "Small steps every day.",
-  "Discipline beats motivation.",
-  "Dream big. Start small.",
-  "Consistency creates success.",
-  "Progress over perfection.",
-  "The expert was once a beginner.",
-  "Your future is built today.",
-  "Success loves preparation.",
-  "Action beats overthinking.",
-  "Keep showing up.",
-  "Every day is a fresh start.",
-  "Hard work compounds.",
-  "Focus on what matters.",
-  "Don't quit before the miracle.",
-  "Be stronger than your excuses.",
-  "Learn. Build. Repeat.",
-  "One bug at a time.",
-  "404: Motivation not found.",
-  "It works on my machine.",
-  "There is no bug, only undocumented features.",
-  "Ctrl + S is self-care.",
-  "Coffee is my debugging tool.",
-  "Sleep is for production servers.",
-  "Semicolons save lives.",
-  "Eat. Code. Sleep. Repeat.",
-  "AI didn't write this... probably.",
-  "If it compiles, ship it."
-];
+// ==============================================
+// Load the saved API Key when popup opens
+// ==============================================
+chrome.storage.local.get("apiKey", (result) => {
+
+    if (result.apiKey) {
+
+        apiKeyInput.value = result.apiKey;
+        status.textContent = "✅ API Key Loaded";
+
+    }
+
+});
 
 
-document.querySelector("button").addEventListener("click",random_quote_funtion)
-function random_quote_funtion(){
-    var random_quote = quotes[Math.floor(((Math.random())*(quotes.length)))]
-    document.querySelector("p").innerHTML= "random quotes: ["+random_quote+"]"
+// ==============================================
+// Save Button
+// ==============================================
+saveButton.addEventListener("click", saveApiKey);
+
+
+// ==============================================
+// Save API Key
+// ==============================================
+function saveApiKey() {
+
+    // Read the API Key entered by the user
+    const apiKey = apiKeyInput.value.trim();
+
+    // Don't allow an empty API Key
+    if (!apiKey) {
+
+        status.textContent = "❌ Please enter an API Key.";
+        return;
+
+    }
+
+    // Save the API Key
+    chrome.storage.local.set({ apiKey }, () => {
+
+        status.textContent = "✅ API Key Saved!";
+        console.log("Saved:", apiKey);
+
+    });
+
 }
